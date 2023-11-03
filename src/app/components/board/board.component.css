@@ -1,0 +1,109 @@
+
+
+.outer-cont{
+    font-family: 'Play', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom left, #00ffcc 0%, #cc99ff 100%);
+    align-items: center;
+    justify-content: center;
+  height: 100vh;
+  
+    
+}
+
+main{
+    font-family: 'Play', sans-serif;
+    display: grid;
+   
+    grid-template-columns: 200px 200px 200px;
+    grid-gap: 0px;
+   
+}
+
+app-square{
+    font-family: 'Play', sans-serif;
+    border: 1px solid rgb(57, 57, 57);
+    height: 150px;
+    float: left;
+    text-align: left;
+}
+
+h1{
+    text-align: right;
+   font-family: 'Play', sans-serif;
+    padding: 10px 0px;
+    width: 50%;
+    margin-right: 200px;
+    color: white;
+}
+
+button{
+    font-family: 'Play', sans-serif;
+    font-size: 20px;
+   text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+}
+.start {
+    justify-content: center;
+   margin-inline-start: 220px;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+   
+    
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+h2{
+    font-family: 'Play', sans-serif;
+    font-size: 100px;
+    color: white;
+}
+h3{
+    font-family: 'Play', sans-serif;
+    font-size: 40px;
+    margin-top: -60px;
+   padding-bottom: 90px;
+   padding-top: 7px;
+    color: white;  
+}
+
+.players{
+margin-top: -100px;
+display: flex;
+justify-content: center; 
+align-items: center;
+    
+}
+.players label {
+   padding-top: 10px;
+        font-family: 'Play', sans-serif;
+        font-size: 20px;
+        padding-right: 30px;
+        color: rgb(6, 5, 5);
+    }
+    
+    .two input{
+    font-family: 'Play', sans-serif;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    
+    justify-content: center; 
+   margin-inline-start: 300px;
+  
+    border: none;
+    margin: 10px;
+    
+       
+    }
+

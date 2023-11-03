@@ -1,0 +1,34 @@
+<div class="outer-cont">
+    <h2 *ngIf="freshpage">Let's Play Tic-Tac-Toe</h2>
+    <!-- <h3>Choose the way you want to play</h3> -->
+    <h3 *ngIf="!gameStarted">Choose the way you want to play</h3>
+    <div class="players" *ngIf="!gameStarted">
+ <button (click)="setGameMode('single')" [class.active]="gameMode === 'single'">Single Player</button>
+        <button (click)="setGameMode('two-players')" [class.active]="gameMode === 'two-players'">Two Player</button>
+    </div>
+
+    <div *ngIf="gameMode === 'single' || gameMode === 'two-players'">
+      <!-- <h3>Enter Player Names:</h3> -->
+      <div class="two" *ngIf="gameMode === 'two-players' && !gameStarted" >
+        <input type="text" placeholder="Player 1 Name" [(ngModel)]="player1Name">
+        <input type="text" placeholder="Player 2 Name" [(ngModel)]="player2Name">
+      </div>
+      <!-- <div *ngIf="gameMode === 'single'">
+        <input type="text" placeholder="Player Name" [(ngModel)]="player1Name">
+        <input type="text" value="X" disabled>
+      </div> -->
+    
+    <h1 *ngIf="!winner && !isdraw && !freshpage">Current Player: {{player}}</h1>
+    <h2 *ngIf="winner">Player {{winner}} won!!!</h2>
+    <h2 *ngIf="isdraw">Draw!!!</h2>
+    <button class="start" *ngIf="winner || isdraw || freshpage" outline (click)="newGame()">Start Game</button>
+     <button *ngIf="winner || isdraw" (click)="playAgain()">Play Again</button>
+   
+    <main *ngIf="!winner && !isdraw">
+      <app-square *ngFor="let val of squares; let i = index" [value]="val" (click)="makeMove(i)">
+        <a routerLink="/game">Go Back</a>
+      </app-square>
+     
+
+    </main>
+  </div>

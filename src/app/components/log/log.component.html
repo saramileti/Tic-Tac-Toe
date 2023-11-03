@@ -1,0 +1,5 @@
+<div class="log">
+  <div *ngFor="let log of logs; let i = index" (click)="handleLogClick(i)">
+    {{ log.playerName }} made a move ({{ log.move }}) at coordinates {{ log.coordinates }}.
+  </div>
+</div>
