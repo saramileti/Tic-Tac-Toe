@@ -18,61 +18,60 @@
   justify-content: center;
   margin-top: 10px;
 }
-.reset button{
-
+.reset button {
   font-family: "Play", sans-serif;
   font-size: 15px;
   padding: 24px;
   border-radius: 10px;
-  background-color: black;
+  background-color: #31c4be;
   color: white;
   border: none;
+  box-shadow: inset 0px -4px 0px #128b86;
+  cursor: pointer;
+  font-weight: 700;
 }
 
+.column {
+  color: #a8bec9;
+}
 .game-board {
   width: 400px;
   height: 400px;
-  border-radius: 2rem;
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.3)
-  );
+  border-radius: 15px;
+  box-shadow: inset 0px -8px 0px #10212a;
+  border: 0;
+  cursor: pointer;
   z-index: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 15px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
 }
 
 .square {
   width: 99%;
   height: 99%;
   border-width: 2px;
-  border-style: solid;
-  border-color: white;
-  color: cadetblue;
+  box-shadow: inset 0px -8px 0px #10212a;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 3rem;
+  color: #f2b237;
+  grid-gap: 20px;
+  background: #1f3540;
+  border-radius: 15px;
+  box-shadow: inset 0px -8px 0px #10212a;
+  border: 0;
 }
 
+.square.playerO {
+  color: #31c4be;
+}
 .square:hover {
   cursor: pointer;
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
 }
-/* shtojeeee */
-/* .players {
-  margin-top: -600px;
-  justify-content: flex-end; 
-  margin-inline: 90px;
-
-  display: flex;
-}  */
 
 .players {
   margin-left: 450px;
@@ -80,18 +79,21 @@
   justify-content: center;
 }
 .players button {
-  margin-left: 15px; /* Add margin to the left of each button */
+  margin-left: 15px;
   font-family: "Play", sans-serif;
+  font-weight: 400;
   font-size: 15px;
   padding: 24px;
   border-radius: 10px;
-  background-color: black;
-  color: white;
+  background-color: #f2b237;
+  color: black;
   border: none;
+  box-shadow: inset 0px -4px 0px #cc8b12;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 .startGame label {
-  /* display: flex; */
   font-size: 20px;
   font-family: "Play", sans-serif;
 }
@@ -100,27 +102,31 @@
   font-size: 20px;
   padding: 10px;
   border-radius: 10px;
-
   justify-content: center;
   margin-inline-start: 300px;
-
   border: none;
   margin: 10px;
+}
+
+.startGame label {
+  color: #a8bec9;
 }
 
 .startGame button {
   font-family: "Play", sans-serif;
   margin-left: 550px;
   margin-top: 50px;
-  /* padding-top: 160px; */
   font-size: 15px;
   padding: 24px;
   justify-content: center;
   text-align: center;
   border-radius: 10px;
-  background-color: black;
-  color: white;
+  background-color: #31c4be;
+  color: black;
   border: none;
+  box-shadow: inset 0px -4px 0px #128b86;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 .player {
@@ -138,56 +144,25 @@
   justify-content: center;
   padding: 10px;
   color: white;
-
 }
-
 
 .logs {
   display: grid;
   align-items: center;
   width: 40%;
   grid-template-columns: 50% 50%;
-  justify-content: flex-end; /* Align the grid to the right */
+  justify-content: flex-end;
 }
 
-/* You can add additional styling for the child elements if needed */
 .logs h2 {
   text-align: center;
+  color: white;
 }
 
 .logs .column {
   width: 100% !important;
   text-align: center;
 }
-
-/* Adjust other styles as needed */
-
-/* .logs{
-  margin-top: 100px;
-  margin-left: 900px;
-} */
-/* .players{
-  margin-top: 20px;
- 
-  margin-left: 3000px;
-  justify-content: flex-end; 
-
-  margin-inline: 90px;
-  display: flex;
-  }
-  .players button{
-    margin-right: 15px;
-    font-family: 'Play', sans-serif;
-    font-size: 15px;
-
- 
-   padding: 24px;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
-    border: none;
-   
-  } */
 
 span {
   cursor: pointer;
@@ -196,50 +171,19 @@ h3 {
   position: absolute;
   top: 4%;
 }
-.playerO {
-  color: cornflowerblue;
-}
 
 .column {
   float: left;
   width: 50%;
   padding: 10px;
-  /* //border-style: solid;
-  //border-width: 1px;
-  //border-color: darkslategray; */
 }
 .row {
-  /* //box-sizing: border-box;
-  //background: linear-gradient(to right bottom,
-  //  rgba(255,255,255, 0.3),
-  //  rgba(255, 255, 255, 0.2)); */
   display: flex;
-  /* //flex-direction: column; */
 }
-/* .button {
-  border-color: darkslategray;
-  border-width: 1px;
-  border-width: medium;
-  color: black;
-} */
-/* .onePlayer {
-  border-color: aliceblue;
-  border-width: medium;
-  color: darkslategray;
-  margin-left: 0;
-}
-.twoPlayer {
-  border-color: aliceblue;
-  border-width: medium;
-  color: darkslategray;
-} */
-
-
-
-
-/* New CSS */
 
 .player-turn-label {
-  display: flex; justify-content: center;padding: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
   color: white;
 }
