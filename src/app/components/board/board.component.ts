@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-board',
@@ -17,24 +17,14 @@ export class BoardComponent implements OnInit {
   playerO: string = '';
   playerNamesEntered: boolean = false;
   currentPlayerName: string = '';
-  boardLocked?: boolean;
+  boardLocked!: boolean;
+  index!: number;
 
   startGame() {
-    //debugger
-    console.log('Starting game...');
-    console.log(
-      'Initial values - playerX:',
-      this.playerX,
-      'playerO:',
-      this.playerO
-    );
-
     if (this.playerX) {
       this.playerNamesEntered = true;
       this.currentPlayerName = this.playerX; // Set the initial player turn
     }
-
-    console.log('After setting currentPlayerName:', this.currentPlayerName);
   }
 
   winningOptions = [
@@ -55,17 +45,35 @@ export class BoardComponent implements OnInit {
     return this.XIsPlayer ? 'X' : 'O';
   }
 
-  reset() {
+  replay() {
     this.board = new Array(9).fill('');
     this.stateBoard = [];
     this.XIsPlayer = true;
-    this.winner = undefined;
+    this.clickedStateBoard = false;
+    this.winner = '';
+    this.boardLocked = false;
+
+    if (this.onePlayer && this.currentPlayerName === this.playerO) {
+      this.generateRandomNumber();
+      this.decideWinner();
+    } else if (this.twoPlayer && this.currentPlayerName === this.playerX) {
+      console.log('trueeee');
+    } else {
+      return;
+    }
+  }
+
+  reset() {
+    this.board = new Array(9).fill('');
+    this.stateBoard = [];
+    this.onePlayer = false;
+    this.twoPlayer = false;
+    this.XIsPlayer = true;
     this.clickedStateBoard = false;
     this.playerX = '';
     this.playerO = '';
-
     this.playerNamesEntered = false;
-    this.currentPlayerName = '';
+    this.replay();
   }
 
   OnePlayer() {
@@ -91,9 +99,7 @@ export class BoardComponent implements OnInit {
     }
     this.currentPlayerName =
       this.currentPlayerName === this.playerX ? this.playerO : this.playerX;
-
     this.board = newBoard;
-    console.log('board on this state is ' + this.board);
     this.clickedStateBoard = true;
     return this.board;
   }
@@ -106,30 +112,30 @@ export class BoardComponent implements OnInit {
       !this.boardLocked
     ) {
       if (this.onePlayer) {
-        this.boardLocked = true;
         //if we have the option to play with the computer, the next move will be set randomly
         this.board[index] = this.player;
         this.stateBoard.push({ id: index, values: this.player });
 
         this.XIsPlayer = !this.XIsPlayer;
-
-        setTimeout(() => {
-          this.generateRandomNumber();
-          this.boardLocked = false;
-        }, 1000);
-
         this.decideWinner();
-      } else {
+        this.boardLocked = this.winner !== '';
+        if (!this.boardLocked) {
+          setTimeout(() => {
+            this.generateRandomNumber();
+            this.boardLocked = false;
+          }, 1000);
+        }
+      } else if (this.twoPlayer) {
         this.board[index] = this.player;
-        console.log(this.player);
         this.stateBoard.push({ id: index, values: this.player });
         this.XIsPlayer = !this.XIsPlayer;
-
-        console.log(this.stateBoard);
         this.currentPlayerName =
           this.player === 'X' ? this.playerX : this.playerO;
 
         this.decideWinner();
+        if (this.winner) {
+          this.boardLocked = true; // Lock the board after deciding the winner
+        }
       }
     } else {
       return this.board;
@@ -138,20 +144,19 @@ export class BoardComponent implements OnInit {
 
   generateRandomNumber(): void {
     if (this.winner !== '') {
-      return; // Do nothing if there is already a winner
+      this.boardLocked = true;
     }
-    //debugger
-    let hasMoved = false;
 
+    let hasMoved = false;
     while (!hasMoved && this.stateBoard.length < 8) {
       let possibleIndex = Math.floor(Math.random() * 9);
-
       if (this.board[possibleIndex] == '') {
         this.board[possibleIndex] = this.player;
         this.stateBoard.push({ id: possibleIndex, values: this.player });
         this.XIsPlayer = !this.XIsPlayer;
         this.decideWinner();
         hasMoved = true;
+        this.boardLocked = true;
       }
     }
   }
@@ -170,26 +175,19 @@ export class BoardComponent implements OnInit {
         this.board[move2] === this.board[move3] &&
         this.board[move1] === this.board[move3]
       ) {
-        console.log('Winner Found!');
-        console.log('this.player:', this.player);
-        console.log('this.playerO:', this.playerO);
-        console.log('this.playerX:', this.playerX);
-        console.log('Setting winner...');
-        //debugger;
-
         if (this.player === 'X') {
           this.winner = this.playerO === 'computer' ? 'COMPUTER' : this.playerO;
         }
         if (this.player === 'O') {
-          this.winner = this.playerX === 'computer' ? 'COMPUTER' : this.playerX;
+          this.winner = this.playerX;
         }
-        console.log('Winner set to:', this.winner);
+        this.boardLocked = true;
         return;
       }
     }
     if (boardIsFull) {
-      console.log("Game ended without a winner. It's a draw!");
       this.winner = "No one (It's a draw)";
+    } else {
     }
   }
 }

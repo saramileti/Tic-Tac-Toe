@@ -17,8 +17,22 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  gap: 10px;
 }
-.reset button {
+.reset button  {
+  font-family: "Play", sans-serif;
+  font-size: 15px;
+  padding: 24px;
+  border-radius: 10px;
+  background-color: #31c4be;
+  color: white;
+  border: none;
+  box-shadow: inset 0px -4px 0px #128b86;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.replay button{
   font-family: "Play", sans-serif;
   font-size: 15px;
   padding: 24px;
@@ -186,4 +200,9 @@ h3 {
   justify-content: center;
   padding: 10px;
   color: white;
+}
+
+material-icons{
+  font-size: 24px;
+  margin-inline: 15px;
 }
